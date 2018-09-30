@@ -10,15 +10,19 @@ def start_redis():
     return r
 
 
-def write_batch_into_redis(r, data, feature_name):
+def flush_redis(r):
+    r.flushall()
+
+
+def write_batch_into_redis(r, data):
     for d in data:
-        id = d['id']
-        value = d['json_data']
-        write_into_redis(r, feature_name, id, value)
-    logging.info('Successfully inserted or updated {number_entries} keys into Redis'
+        id = d['user_id']
+        value = d['user_parameters']
+        write_into_redis(r, id, value)
+    logging.info('Successfully wrote {number_entries} keys into Redis'
                  .format(**{'number_entries': len(data)}))
 
 
-def write_into_redis(r, feature_name, id, value):
-    key = feature_name+'_'+str(id)
+def write_into_redis(r, id, value):
+    key = id
     r.set(key, value)
