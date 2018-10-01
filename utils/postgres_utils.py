@@ -50,8 +50,8 @@ def insert_data(data):
     close_database(c, cur)
 
 
-def get_postgres_data():
-    sql = """select * from users"""
+def get_postgres_data(limit, offset):
+    sql = """select * from users LIMIT {limit} OFFSET {offset}""".format(**{'limit': limit, 'offset': offset})
     c, cur = connect_to_database()
     cur.execute(sql)
     data = cur.fetchall()
