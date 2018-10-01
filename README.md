@@ -92,7 +92,7 @@ A second script runs in the background and inserts or updates new data at irregu
 python main_data_loading.py &
 ```
 
-### Update Redis every 5 second
+### Update Redis every 5 seconds
 
 A third script launches several 4 threads (environment parameter), each of them running batch updates of Redis from Postgres.
 
