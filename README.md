@@ -64,13 +64,19 @@ export BATCH_SIZE=1000
 
 ### Set up Postgres and Redis
 
-First step consists in creating the user role and the database
+First step consists in creating the user role and the database in Postgres.
 
 ```
 createdb
 psql -c "CREATE ROLE $USERNAME WITH LOGIN PASSWORD '$PASSWORD';"
 psql -c "CREATE DATABASE $DBNAME OWNER $USERNAME;"
 ```
+The Redis server also needs to be started.
+
+```
+redis-server &
+```
+
 Then a first script runs creates a user table if it does not exists, truncates it and loads $10^5$ data points.
 This script also flushes Redis
 
