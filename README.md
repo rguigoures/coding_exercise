@@ -1,4 +1,4 @@
-# Exercise
+# Coding Exercise
 
 Setup the following tools:
 - Local Postgres DB
@@ -91,5 +91,5 @@ python main_data_loading.py &
 A third script launches several 4 threads (environment parameter), each of them running batch updates of Redis from Postgres.
 
 ```
-python main_data_loading.py &
+python main_update_redis.py &
 ```
